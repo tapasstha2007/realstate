@@ -1,9 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { assets, projectsData } from "../assets/assets";
 
 const Projects = () => {
+
+  const [currentIndex, setcurrentIndex] = useState(0)
+  const [cardsToShow, setcardsToShow] = useState(1)
+
+  const nextProject = () => {
+    setcurrentIndex((prevIndex)=> {
+      if (prevIndex === projectsData.length - 1) {
+        return 0;
+      } else {
+        return prevIndex + 1;
+      }
+
+    }
+    )
+  }
+  const prevProject = () => {
+    setcurrentIndex((prevIndex)=> {
+      if (prevIndex === 0) {
+        return projectsData.length - 1;
+      } else {
+        return prevIndex - 1;
+      }
+    }
+    )
+  }
+
+  useEffect(() => {
+  
+    const updateCardsToShow = () => {
+      if (window.innerWidth >= 1024) {
+        setcardsToShow(projectsData.length)
+        }
+         else{
+        setcardsToShow(1)
+        };
+    }
+        updateCardsToShow()
+
+        window.addEventListener("resize", updateCardsToShow)
+        return () => {
+          window.removeEventListener("resize", updateCardsToShow)
+        }
+      
+   }, [])
+  
+  
   return (
-    <div className="" id="Projects">
+    <div className="px-10" id="Projects">
       <div className="text-center mt-36">
         <h1 className="font-bold text-4xl">
           Projects <span className="underline font-light">Complected</span>
@@ -15,12 +61,14 @@ const Projects = () => {
       </div>
       <div className="flex justify-end items-center mb-8">
         <button
+        onClick={prevProject}
           className="p-3 bg-gray-200 rounded mr-2  "
           aria-label="Previous Project"
         >
           <img src={assets.left_arrow} alt="Previous" />
         </button>
-        <button
+        <button 
+        onClick={nextProject}
           className="p-3 bg-gray-200 rounded mr-2  "
           aria-label="Next Project"
         >
@@ -28,10 +76,18 @@ const Projects = () => {
         </button>
       </div>
       <div className="overflow-hidden">
-        <div>
+        <div className="flex gap-8 transition-transform duration-500 ease-in-out "
+        style={{transform: `translateX(-${(currentIndex * 100) / cardsToShow}%)`}} 
+        >
           {projectsData.map((project, index) => (
-            <div key={index}>
-              <img src={project.image} />
+            <div key={index} className="relative flex-shrink-0 w-full sm:w-1/4 ">
+              <img src={project.image} className="w-full h-auto mb-16" />
+              <div className="absolute left-0 right-0 bottom-5 flex justify-center">
+                <div className="inline-block bg-white w-3/4 px-4 py-2 shadow-md">
+                <h2 className="text-xl font-semibold text-gray-800">{project.title}</h2>
+                <p className="text-gray-50 text-sm">{project.price} <span>|</span> {project.location}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>

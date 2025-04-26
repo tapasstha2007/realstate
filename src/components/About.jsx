@@ -22,8 +22,8 @@ const About = () => {
           <span>Your Vision</span>
         </p>
       </div>
-      <div className="flex justify-center gap-[5rem] mt-16 mb-16 mx-20 items-center">
-        <img src={assets.brand_img} className="w-1/3" />
+      <div className="flex justify-center gap-[5rem] mt-16 mb-16 mx-20 items-center flex-wrap md:flex-nowrap">
+        <img src={assets.brand_img} className="w-full md:w-1/3" />
         <div className="w-[400px] gap-9 flex flex-col">
           <div>
             <div className="flex gap-20 ">
