@@ -1,6 +1,6 @@
 import React from "react";
 import { assets } from "../assets/assets";
-
+import { motion } from "framer-motion";
 const Num = (props) => {
   return (
     <div>
@@ -12,7 +12,13 @@ const Num = (props) => {
 
 const About = () => {
   return (
-    <div id="About" className="scroll-smooth">
+    <motion.div
+    initial={{ opacity: 0, x: -100 }}
+      transition={{ duration: 1 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+    
+    id="About" className="scroll-smooth">
       <div className="text-center mt-16">
         <h1 className="font-bold text-4xl">
           About <span className="underline font-light">Our Brand</span>
@@ -47,7 +53,7 @@ const About = () => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'motion/react';
 
 const Contacts = () => {
     const [result, setResult] = React.useState("");
@@ -30,7 +31,11 @@ const Contacts = () => {
       }
     };
   return (
-    <div className='p-10'>
+    <motion.div className='p-10'
+    initial={{ opacity: 0, x: -100 }}
+      transition={{ duration: 1 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}>
       <div className="text-center mt-7">
         <h1 className="font-bold text-4xl">
           Contact  <span className="underline font-light">With Us</span>
@@ -64,7 +69,7 @@ const Contacts = () => {
             <button type='submit' className='bg-blue-700 text-white px-8 py-2 rounded'>{result?result:"Send Message"}</button>
             </div>
             </form>
-    </div>
+    </motion.div>
     
   )
 }

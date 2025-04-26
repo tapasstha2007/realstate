@@ -1,9 +1,15 @@
 import React from 'react'
 import { assets, testimonialsData } from '../assets/assets'
-
+import { motion } from 'framer-motion'
 const Testimonials = () => {
   return (
-    <div className='lg:p-20 p-5' id='Testimonial'>
+    <motion.div 
+    initial={{ opacity: 0, x: 100 }}
+      transition={{ duration: 1 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+    
+    className='lg:p-20 p-5' id='Testimonial'>
         <div className="text-center mt-20 ">
         <h1 className="font-bold text-4xl">
           Customer <span className="underline font-light">Testimonials</span>
@@ -35,7 +41,7 @@ const Testimonials = () => {
     ))}
 
     </div>
-    </div>
+    </motion.div>
   )
 }
 

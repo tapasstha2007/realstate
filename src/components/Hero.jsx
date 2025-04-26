@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import "../index.css";
+import { motion } from "motion/react"
 
 const Hero = () => {
   return (
@@ -10,7 +11,13 @@ const Hero = () => {
     >
       <Navbar />
 
-      <div className="flex justify-center  flex-col text-center w-full">
+      <motion.div
+      initial={{ opacity: 0, y: 100 }}
+      transition={{ duration: 1 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      
+      className="flex justify-center  flex-col text-center w-full">
         <h1 className="text-white text-5xl sm:text-5xl md:text-6xl fonty font-bold pt-[5rem] max-w-3xl mx-auto">
           Explore homes that fit your dreams
         </h1>
@@ -28,7 +35,7 @@ const Hero = () => {
             Contact Us
           </a>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

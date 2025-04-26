@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { assets, projectsData } from "../assets/assets";
-
+import { motion } from "framer-motion";
 const Projects = () => {
 
   const [currentIndex, setcurrentIndex] = useState(0)
@@ -49,7 +49,13 @@ const Projects = () => {
   
   
   return (
-    <div className="px-10" id="Projects">
+    <motion.div
+    initial={{ opacity: 0, y: 100 }}
+      transition={{ duration: 1 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+    
+    className="px-10" id="Projects">
       <div className="text-center mt-36">
         <h1 className="font-bold text-4xl">
           Projects <span className="underline font-light">Complected</span>
@@ -92,7 +98,7 @@ const Projects = () => {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
